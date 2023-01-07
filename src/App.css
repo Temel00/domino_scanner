@@ -1,38 +1,285 @@
-.App {
-  text-align: center;
+:root {
+  --black: ##0e161b;
+  --dark-bg: #2f4858;
+  --prim-color: #33658a;
+  --light-bg: #86bbd8;
+  --accent-o: #f26419;
+  --accent-y: #f6ae2d;
+  --white: #f2f6f8;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Prim-button {
+  background-color: var(--prim-color);
+  color: var(--white);
+  font-size: 1.25rem;
+  padding: 0.75em;
+  border-radius: 1em;
+  border: 2px solid var(--light-bg);
+  transition: 0.4s all;
+  font-family: "Comfortaa", cursive;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Prim-button:hover {
+  background-color: var(--accent-y);
+  color: var(--dark-bg);
+  border: 2px solid var(--dark-bg);
+  transform: scale(1.1);
+}
+
+.Accent-button {
+  background-color: var(--accent-y);
+  color: var(--dark-bg);
+  font-size: 1rem;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid var(--light-bg);
+  transition: 0.4s all;
+  font-family: "Comfortaa", cursive;
+}
+
+.Accent-button:hover {
+  background-color: var(--dark-bg);
+  color: var(--accent-y);
+  border: 2px solid var(--white);
+  transform: scale(1.1);
+}
+
+.hid-button {
+  background-color: transparent;
+  border: none;
+  transition: 0.6s all;
+}
+
+.hid-button:hover {
+  color: var(--prim-color);
+}
+
+body {
+  background-color: var(--white);
+  color: var(--dark-bg);
+  font-family: "Comfortaa", cursive;
+}
+
+.App-nav {
+  background-color: var(--dark-bg);
+  position: fixed;
+  width: 100vw;
+}
+
+.App-nav ul {
   display: flex;
-  flex-direction: column;
+  flex-flow: row nowrap;
+  gap: 4em;
+  padding-block: 1.5rem;
+  list-style: none;
+  justify-content: right;
+  margin-right: min(5em, 5vw);
+}
+
+.App-nav a {
+  color: var(--white);
+  padding-inline: 1em;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border-inline: 1px solid var(--dark-bg);
+  transition: 0.4s all;
+}
+
+.App-nav a:hover {
+  border-inline: 1px solid var(--accent-y);
+  color: var(--accent-y);
+}
+
+/* Home Page Styles */
+#Home-page {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+}
+
+#Home-page h1 {
+  margin-top: 7rem;
+}
+
+.Home-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 3em;
+}
+
+#home-players {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1em;
+}
+
+.playerCard {
+  background-color: var(--accent-y);
+  border-radius: 0.75em;
+  color: var(--dark-bg);
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1em;
+  padding: 1em;
+  align-items: center;
+}
+
+#name {
+  background-color: transparent;
+  color: var(--dark-bg);
+  border: none;
+  font-size: 1.25rem;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid var(--black);
+  -webkit-text-fill-color: var(--black);
+  -webkit-box-shadow: 0 0 0px 1000px var(--accent-y) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Scanning Screen */
+#Loading-screen {
+  background-color: var(--dark-bg);
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#viewbox {
+  display: grid;
+  place-items: center stretch;
+  width: clamp(365px, 50vw, 1200px);
+
+  aspect-ratio: 1;
+}
+
+.drawingBuffer {
+  border: 5px solid var(--light-bg);
+  border-radius: 0.2em;
+}
+.drawingBuffer video {
+  left: -12.5vw;
+}
+
+.btnBox {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.results-cont {
+  display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.results {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  gap: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.domino-backing {
+  background-color: var(--white);
+  border-radius: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  padding: 0.5em;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.domino-top {
+  border-bottom: 1px solid var(--dark-bg);
+  margin: 0.25em;
+}
+
+.domino-val {
+  color: var(--white);
+}
+
+/* Popup Styles */
+/* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.close-icon {
+  content: "x";
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+#scoreAdd {
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
 }
