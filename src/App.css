@@ -126,12 +126,16 @@ body {
   color: var(--dark-bg);
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
   gap: 1em;
   padding: 1em;
   align-items: center;
 }
 
-#name {
+#name1,
+#name2,
+#name3,
+#name4 {
   background-color: transparent;
   color: var(--dark-bg);
   border: none;
@@ -231,7 +235,6 @@ select:-webkit-autofill:focus {
   color: var(--white);
 }
 
-/* Popup Styles */
 /* Popup style */
 .popup-box {
   position: fixed;
