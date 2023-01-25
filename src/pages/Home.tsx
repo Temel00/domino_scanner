@@ -290,7 +290,14 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
                 placeItems: "center",
               }}
             >
-              {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
+              <video
+                id="video"
+                style={{
+                  width: window.innerWidth,
+                  height: 480,
+                  border: "3px solid orange",
+                }}
+              />
               <canvas
                 className="drawingBuffer"
                 style={{

@@ -112,37 +112,52 @@ const Scanner = ({
   };
 
   useLayoutEffect(() => {
-    Quagga.init(
-      {
-        inputStream: {
-          type: "LiveStream",
-          constraints: {
-            ...constraints,
-            ...(cameraId && {deviceId: cameraId}),
-            ...(!cameraId && {facingMode}),
-          },
-          target: scannerRef.current,
-        },
-        locator,
-        numOfWorkers,
-        decoder: {readers: decoders},
-        locate,
-      },
-      (err) => {
-        Quagga.onProcessed(handleProcessed);
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: false,
+      })
+      .then((stream) => {
+        const video = document.querySelector("#video");
+        video.srcObject = stream;
+        video.play();
 
-        if (err) {
-          return console.log("Error starting Quagga:", err);
-        }
-        if (scannerRef && scannerRef.current) {
-          Quagga.start();
-          if (onScannerReady) {
-            onScannerReady();
+        Quagga.init(
+          {
+            inputStream: {
+              type: "LiveStream",
+              constraints: {
+                ...constraints,
+                ...(cameraId && {deviceId: cameraId}),
+                ...(!cameraId && {facingMode}),
+              },
+              target: scannerRef.current,
+            },
+            locator,
+            numOfWorkers,
+            decoder: {readers: decoders},
+            locate,
+          },
+          (err) => {
+            Quagga.onProcessed(handleProcessed);
+
+            if (err) {
+              return console.log("Error starting Quagga:", err);
+            }
+            if (scannerRef && scannerRef.current) {
+              Quagga.start();
+              if (onScannerReady) {
+                onScannerReady();
+              }
+            }
           }
-        }
-      }
-    );
-    Quagga.onDetected(errorCheck);
+        );
+        Quagga.onDetected(errorCheck);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return () => {
       Quagga.offDetected(errorCheck);
       Quagga.offProcessed(handleProcessed);
