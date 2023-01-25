@@ -111,12 +111,17 @@ const Scanner = ({
     }
   };
 
+  const vidConstraints = {
+    video: {
+      facingMode: {
+        exact: "environment",
+      },
+    },
+  };
+
   useLayoutEffect(() => {
     navigator.mediaDevices
-      .getUserMedia({
-        video: true,
-        audio: false,
-      })
+      .getUserMedia(vidConstraints)
       .then((stream) => {
         const video = document.querySelector("#video");
         video.srcObject = stream;
