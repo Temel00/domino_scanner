@@ -164,6 +164,7 @@ select:-webkit-autofill:focus {
   position: fixed;
   display: grid;
   place-items: center;
+  grid-template-rows: repeat(3, 1fr);
   width: 100vw;
   height: 100vh;
 }
@@ -171,23 +172,31 @@ select:-webkit-autofill:focus {
 #viewbox {
   display: grid;
   place-items: center stretch;
-  width: clamp(365px, 50vw, 1200px);
-
-  aspect-ratio: 1;
-}
-
-.drawingBuffer {
-  border: 5px solid var(--light-bg);
-  border-radius: 0.2em;
-}
-.drawingBuffer video {
-  left: -12.5vw;
+  grid-row: 2;
+  gap: 1em;
+  /* width: clamp(320px, 50vw, 1200px); */
 }
 
 .btnBox {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+}
+
+.vidContainer {
+  width: 90vw;
+  display: grid;
+  place-items: center;
+}
+
+#video {
+  position: relative;
+  width: 100%;
+}
+
+.drawingBuffer {
+  border: 5px solid var(--light-bg);
+  border-radius: 0.2em;
 }
 
 .hidden {
@@ -198,20 +207,21 @@ select:-webkit-autofill:focus {
   visibility: visible;
 }
 
-.results-cont {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-}
-
 .results {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   color: black;
+  gap: 1em;
+  grid-row: 1;
+}
+
+.results-cont {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
   gap: 1em;
 }
 
@@ -285,4 +295,26 @@ select:-webkit-autofill:focus {
   text-align: center;
   width: 2rem;
   height: 2rem;
+}
+
+#About-page {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+}
+
+#About-page h1 {
+  margin-top: 7rem;
+}
+
+.barcode-bin {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.5em;
+}
+
+.barcode-bin img {
+  /* border: 1px solid red; */
 }

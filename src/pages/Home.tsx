@@ -283,6 +283,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
             </div>
 
             <div
+              className="vidContainer"
               ref={scannerRef}
               style={{
                 position: "relative",
@@ -290,25 +291,16 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
                 placeItems: "center",
               }}
             >
-              <video
-                id="video"
-                style={{
-                  width: window.innerWidth,
-                  height: 480,
-                  border: "3px solid orange",
-                }}
-              />
+              <video id="video" />
               <canvas
                 className="drawingBuffer"
                 style={{
                   position: "absolute",
-                  top: "0px",
-                  // left: '0px',
-                  // height: '100%',
-                  // width: '100%',
+                  top: "-5px",
+                  left: "-5px",
+                  height: "100%",
+                  width: "100%",
                 }}
-                width="640"
-                height="480"
               />
               {scanning ? (
                 <Scanner
