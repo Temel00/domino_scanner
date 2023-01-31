@@ -1,3 +1,4 @@
+/* *Global Styles */
 :root {
   --black: ##0e161b;
   --dark-bg: #2f4858;
@@ -11,6 +12,14 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
 }
 
 .Prim-button {
@@ -95,7 +104,7 @@ body {
   color: var(--accent-y);
 }
 
-/* Home Page Styles */
+/* *Home Page Styles */
 #Home-page {
   display: flex;
   flex-flow: column nowrap;
@@ -158,8 +167,8 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Scanning Screen */
-#Loading-screen {
+/* *Scanning Screen Styles */
+#Scanning-screen {
   background-color: var(--dark-bg);
   position: fixed;
   display: grid;
@@ -174,7 +183,6 @@ select:-webkit-autofill:focus {
   place-items: center stretch;
   grid-row: 2;
   gap: 1em;
-  /* width: clamp(320px, 50vw, 1200px); */
 }
 
 .btnBox {
@@ -197,14 +205,6 @@ select:-webkit-autofill:focus {
 .drawingBuffer {
   border: 5px solid var(--light-bg);
   border-radius: 0.2em;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-.show {
-  visibility: visible;
 }
 
 .results {
@@ -245,7 +245,7 @@ select:-webkit-autofill:focus {
   color: var(--white);
 }
 
-/* Popup style */
+/* *Manual Score Popup Styles */
 .popup-box {
   position: fixed;
   background: #00000050;
@@ -297,6 +297,7 @@ select:-webkit-autofill:focus {
   height: 2rem;
 }
 
+/* *About Page Styles */
 #About-page {
   display: flex;
   flex-flow: column nowrap;
@@ -313,8 +314,4 @@ select:-webkit-autofill:focus {
   display: flex;
   flex-flow: column nowrap;
   gap: 1.5em;
-}
-
-.barcode-bin img {
-  /* border: 1px solid red; */
 }

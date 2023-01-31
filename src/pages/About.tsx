@@ -8,7 +8,6 @@ const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
       <div id="About-page">
         <h1>About</h1>
         <div className="barcode-bin">
-          {/* <img src="/DominoBarcodes/Dom_0_0.png" alt="logo"></img> */}
           <img src="/DominoBarcodes/Dom_0_1.png" alt="logo"></img>
           <img src="/DominoBarcodes/Dom_0_2.png" alt="logo"></img>
           <img src="/DominoBarcodes/Dom_0_3.png" alt="logo"></img>

@@ -7,14 +7,26 @@ import Popup from "../components/Popup";
 export interface IHomePageProps {}
 
 const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
+  // Saves the reference to manual score input
   const inputRef = useRef<any>(null);
-  const player1Ref = useRef<any>(null);
+  // Holds the reference to the video container
+  const scannerRef = useRef(null);
+  // Stores wheter manual score popup is open
   const [isOpen, setIsOpen] = useState(false);
-  const [numPlayers, setNumPlayers] = useState(0);
-  const [scanning, setScanning] = useState(false);
-  const [results, setResults] = useState<any[]>([]);
-  const [currentPlayer, setCurrentPlayer] = useState(0);
+  // Stores whether the game is started or in setup
   const [inGame, setInGame] = useState(false);
+  // Stores whether the barcode scanner popup is open
+  const [scanning, setScanning] = useState(false);
+
+  // Holds the total number of players
+  const [numPlayers, setNumPlayers] = useState(0);
+  // Holds the current player active for adding scores to player
+  const [currentPlayer, setCurrentPlayer] = useState(0);
+
+  // Stores the results array from the scanned barcodes
+  const [results, setResults] = useState<any[]>([]);
+
+  // Holds the players scores and Names
   const [player1Score, setPlayer1Score] = useState(0);
   const [player2Score, setPlayer2Score] = useState(0);
   const [player3Score, setPlayer3Score] = useState(0);
@@ -26,20 +38,22 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     player4: "",
   });
 
+  // Function that toggles the manual score popup
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
-  const scannerRef = useRef(null);
-
+  // Setting the classNames of visible and non-visible objects
   let scan = "hidden";
   let notScan = "show";
 
+  // Function that is called when a Scanning Icon is clicked
   const onPlayerClick = (index: number) => {
     setCurrentPlayer(index);
     setScanning(true);
   };
 
+  // Function that Saves the names of players when the game is started
   const saveNames = () => {
     const in1 = document.getElementById("name1") as HTMLInputElement;
     const in2 = document.getElementById("name2") as HTMLInputElement;
@@ -74,37 +88,13 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     });
   };
 
-  // const reloadNames = () => {
-  //   const in1 = document.getElementById("name1") as HTMLInputElement;
-  //   const in2 = document.getElementById("name2") as HTMLInputElement;
-  //   const in3 = document.getElementById("name3") as HTMLInputElement;
-  //   const in4 = document.getElementById("name4") as HTMLInputElement;
-
-  //   if (in1 !== null) {
-  //     console.log("in1 not null: " + in1.value);
-  //     in1.value = "This";
-  //     console.log(in1.value);
-  //   }
-
-  //   if (in2 !== null) {
-  //     in2.placeholder = "That";
-  //   }
-
-  //   if (in3 !== null) {
-  //     in3.value = "The";
-  //   }
-
-  //   if (in4 !== null) {
-  //     in4.value = "Other";
-  //   }
-  //   console.log("fired reload");
-  // };
-
+  // Function called when the game is started
   const startGame = () => {
     saveNames();
     setInGame(true);
   };
 
+  // Function called when the game is reset
   const resetGame = () => {
     setPlayer1Score(0);
     setPlayer2Score(0);
@@ -113,7 +103,9 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     setInGame(false);
   };
 
+  // Definition of a Player object
   const Player = ({index}: {index: number}) => {
+    // ! return statement for the Player Object
     return (
       <>
         {/* START Player Manual Score Popup */}
@@ -217,7 +209,8 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     );
   };
 
-  const Loading = () => {
+  // Definition of the Scanning screen object
+  const ScanScreen = () => {
     if (scanning) {
       scan = "visible";
       notScan = "hidden";
@@ -229,9 +222,10 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     console.log("results: " + results);
     let resultSet = results.filter((v, i, a) => a.indexOf(v) === i);
 
+    // ! return statement for the Scanning Screen object
     return (
       <>
-        <div id="Loading-screen" className={scan}>
+        <div id="Scanning-screen" className={scan}>
           <ul className="results">
             {resultSet.map((result) => (
               <>
@@ -315,9 +309,10 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
     );
   };
 
+  // ! return statement for the Home Page Component
   return (
     <>
-      <Loading />
+      <ScanScreen />
       <div id="Home-page" className={notScan}>
         <h1>Add Players</h1>
         <div id="home-players">

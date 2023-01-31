@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect} from "react";
+import {useCallback, useLayoutEffect} from "react";
 import PropTypes from "prop-types";
 import Quagga from "@ericblade/quagga2";
 
@@ -59,7 +59,7 @@ const Scanner = ({
       }
       const err = getMedianOfCodeErrors(result.codeResult.decodedCodes);
       // if Quagga is at least 75% certain that it read correctly, then accept the code.
-      if (err < 0.25) {
+      if (err < 0.15) {
         onDetected(result.codeResult.code);
       }
     },
